@@ -7,7 +7,7 @@ class LuxTTS:
     LuxTTS class for encoding prompt and generating speech on cpu/cuda/mps.
     """
 
-    def __init__(self, model_path='YatharthS/LuxTTS', device='cuda', threads=4):
+    def __init__(self, model_path='YatharthS/LuxTTS', device='cuda', threads=4, precision='fp32'):
         if model_path == 'YatharthS/LuxTTS':
             model_path = None
 
@@ -20,12 +20,23 @@ class LuxTTS:
                 print("CUDA not available, switching to CPU")
                 device = 'cpu'
 
+        use_fp16 = precision.lower() == 'fp16'
+        if precision.lower() not in {'fp16', 'fp32'}:
+            raise ValueError("precision must be one of: 'fp32', 'fp16'")
+
         if device == 'cpu':
+            if use_fp16:
+                print("FP16 precision is not supported on CPU backend; falling back to FP32.")
             model, feature_extractor, vocos, tokenizer, transcriber = load_models_cpu(model_path, threads)
             print("Loading model on CPU")
         else:
-            model, feature_extractor, vocos, tokenizer, transcriber = load_models_gpu(model_path, device=device)
-            print("Loading model on GPU")
+            model, feature_extractor, vocos, tokenizer, transcriber = load_models_gpu(
+                model_path,
+                device=device,
+                use_fp16=use_fp16,
+            )
+            dtype_name = 'FP16' if use_fp16 and device == 'cuda' else 'FP32'
+            print(f"Loading model on GPU ({dtype_name})")
 
         self.model = model
         self.feature_extractor = feature_extractor

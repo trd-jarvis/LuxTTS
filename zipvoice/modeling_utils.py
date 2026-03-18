@@ -82,6 +82,8 @@ def generate(prompt_tokens, prompt_features_lens, prompt_features, prompt_rms, t
 
     # Convert to waveform
     pred_features = pred_features.permute(0, 2, 1) / 0.1
+    vocoder_dtype = next(vocoder.parameters()).dtype
+    pred_features = pred_features.to(vocoder_dtype)
     wav = vocoder.decode(pred_features).squeeze(1).clamp(-1, 1)
 
     # Volume matching
@@ -90,7 +92,7 @@ def generate(prompt_tokens, prompt_features_lens, prompt_features, prompt_rms, t
 
     return wav
 
-def load_models_gpu(model_path=None, device="cuda"):
+def load_models_gpu(model_path=None, device="cuda", use_fp16=False):
     params = LuxTTSConfig()
     if model_path is None:
         model_path = snapshot_download("YatharthS/LuxTTS")
@@ -120,6 +122,13 @@ def load_models_gpu(model_path=None, device="cuda"):
     parametrize.remove_parametrizations(vocos.upsampler.upsample_layers[0], "weight")
     parametrize.remove_parametrizations(vocos.upsampler.upsample_layers[1], "weight")
     vocos.load_state_dict(torch.load(f'{model_path}/vocoder/vocos.bin', map_location=params.device))
+
+    if use_fp16:
+        if str(params.device).startswith("cuda"):
+            model = model.half()
+            vocos = vocos.half()
+        else:
+            print(f"FP16 requested but device '{params.device}' does not support it reliably; using FP32.")
 
     params.sampling_rate = model_config["feature"]["sampling_rate"]
     return model, feature_extractor, vocos, tokenizer, transcriber

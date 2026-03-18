@@ -41,8 +41,11 @@ pip install -r requirements.txt
 ```python
 from zipvoice.luxvoice import LuxTTS
 
-# load model on GPU
+# load model on GPU (FP32 default)
 lux_tts = LuxTTS('YatharthS/LuxTTS', device='cuda')
+
+# optional: run CUDA inference in FP16 for better throughput
+# lux_tts = LuxTTS('YatharthS/LuxTTS', device='cuda', precision='fp16')
 
 # load model on CPU
 # lux_tts = LuxTTS('YatharthS/LuxTTS', device='cpu', threads=2)
@@ -129,7 +132,7 @@ A: Yes, currently it uses float32. Float16 should be significantly faster(almost
 - [x] Huggingface spaces demo
 - [x] Release MPS support (thanks to @builtbybasit)
 - [ ] Release LuxTTS v1.5
-- [ ] Release code for float16 inference
+- [x] Release code for float16 inference
 
 ## Acknowledgments
 
