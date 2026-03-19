@@ -1,8 +1,9 @@
 {
   "success": true,
-  "phase": "Implemented optional CUDA FP16 inference mode in LuxTTS",
-  "test_result": "PASS: python3 -m compileall zipvoice/luxvoice.py zipvoice/modeling_utils.py",
-  "commit": "faa2b454748ffc85c8ad14b1426beb00d85e3edd",
+  "phase": "Maintenance: ignore local virtualenv variants and verify package compiles",
+  "test_result": "PASS: python3 -m compileall -q zipvoice",
+  "commit": "pending",
   "repo_url": "https://github.com/trd-jarvis/LuxTTS",
-  "updated_at": "2026-03-18T18:33:55Z"
+  "updated_at": "2026-03-19T10:29:11Z",
+  "details": "Added venv*/ to .gitignore to prevent accidental local environment tracking (e.g., venv312/)."
 }
