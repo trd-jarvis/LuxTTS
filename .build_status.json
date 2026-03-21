@@ -1,9 +1,8 @@
 {
   "success": true,
-  "phase": "Maintenance: ignore local virtualenv variants and verify package compiles",
-  "test_result": "PASS: python3 -m compileall -q zipvoice",
-  "commit": "5da0ffa3e6f3fab7a7d286ece5ff8f534f6f228e",
-  "repo_url": "https://github.com/trd-jarvis/LuxTTS",
-  "updated_at": "2026-03-19T10:29:34Z",
-  "details": "Added venv*/ to .gitignore to prevent accidental local environment tracking (e.g., venv312/)."
+  "phase": "CI bootstrap: add GitHub Actions smoke checks and local verification docs",
+  "tests": "PASS: python3 -m compileall -q zipvoice; PASS: pyproject metadata validation script",
+  "commit": "93462b094087c022f4b6576b1f587d7649209f40",
+  "repo": "https://github.com/trd-jarvis/LuxTTS",
+  "updatedAt": "2026-03-21T23:15:33Z"
 }
