@@ -139,10 +139,21 @@ A: Yes, currently it uses float32. Float16 should be significantly faster(almost
 - [ZipVoice](https://github.com/k2-fsa/ZipVoice) for their excellent code and model.
 - [Vocos](https://github.com/gemelo-ai/vocos.git) for their great vocoder.
   
+## Development Checks
+
+Run a local smoke check before commits:
+
+```bash
+python -m compileall -q zipvoice
+```
+
 ## Final Notes
 
 The model and code are licensed under the Apache-2.0 license. See LICENSE for details.
 
 Stars/Likes would be appreciated, thank you.
+
+Email: yatharthsharma350@gmail.com
+rs/Likes would be appreciated, thank you.
 
 Email: yatharthsharma350@gmail.com
