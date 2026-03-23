@@ -64,6 +64,7 @@ class EnglishTextNormalizer(TextNormalizer):
         including number and abbreviation expansion."""
         text = self.expand_abbreviations(text)
         text = self.normalize_numbers(text)
+        text = re.sub(self._whitespace_re, " ", text).strip()
 
         return text
 
