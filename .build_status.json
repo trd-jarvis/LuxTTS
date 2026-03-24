@@ -1,8 +1,9 @@
 {
-  "success": true,
-  "timestamp": "2026-03-23T23:50:05Z",
-  "updated_at": "2026-03-23T23:50:05Z",
-  "phase_summary": "Improved text normalization by collapsing redundant whitespace after numeric/abbreviation expansion and added unit tests for normalization behavior.",
+  "status": "success",
+  "timestamp": "2026-03-24T23:09:33Z",
+  "updated_at": "2026-03-24T23:09:33Z",
+  "commit": "dfb19767394aadcd8b74ffa963a661129fc3529e",
+  "phase_summary": "Fixed English text normalization order for decimal percentages and added regression coverage.",
   "tests": [
     {
       "name": "compileall",
@@ -13,7 +14,7 @@
       "name": "unittest",
       "command": "./venv312/bin/python -m unittest discover -s tests -v",
       "result": "pass",
-      "details": "Ran 2 tests; OK"
+      "details": "Ran 3 tests; OK"
     }
   ]
 }
