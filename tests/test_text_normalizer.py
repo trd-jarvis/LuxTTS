@@ -21,6 +21,13 @@ class TestEnglishTextNormalizer(unittest.TestCase):
             "I paid one dollar, fifty cents for one half cake at twenty-five percent off",
         )
 
+    def test_normalize_expands_decimal_percent(self):
+        text = "Battery is at 12.5%"
+        self.assertEqual(
+            self.normalizer.normalize(text),
+            "Battery is at twelve point five percent",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

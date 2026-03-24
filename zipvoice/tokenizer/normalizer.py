@@ -147,8 +147,9 @@ class EnglishTextNormalizer(TextNormalizer):
         text = re.sub(self._pounds_re, r"\1 pounds", text)
         text = re.sub(self._dollars_re, self._expand_dollars, text)
         text = re.sub(self._fraction_re, self._expand_fraction, text)
-        text = re.sub(self._decimal_number_re, self._expand_decimal_point, text)
+        # Expand percentages before decimal conversion so values like 12.5% stay intact.
         text = re.sub(self._percent_number_re, self._expand_percent, text)
+        text = re.sub(self._decimal_number_re, self._expand_decimal_point, text)
         text = re.sub(self._ordinal_re, self._expand_ordinal, text)
         text = re.sub(self._number_re, self._expand_number, text)
         return text
