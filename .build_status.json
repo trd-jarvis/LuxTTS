@@ -1,9 +1,12 @@
 {
+  "success": true,
   "status": "success",
-  "timestamp": "2026-03-24T23:15:00Z",
-  "updated_at": "2026-03-24T23:15:00Z",
-  "commit": "cae9fdcea7ccf688da3e3a22f90bb720e95026de",
-  "phase_summary": "Validated build state and test suite; preparing for v1.5.",
+  "timestamp": "2026-03-25T18:13:39Z",
+  "updated_at": "2026-03-25T18:13:39Z",
+  "repo_url": "https://github.com/trd-jarvis/LuxTTS.git",
+  "branch": "main",
+  "commit": "aa9022d6a612e0922fbd613bdfe8df2557e802d4",
+  "phase_summary": "Verified build health and normalized build status metadata after passing local checks.",
   "tests": [
     {
       "name": "compileall",
